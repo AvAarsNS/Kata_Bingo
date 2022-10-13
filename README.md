@@ -44,6 +44,27 @@ card = [
 ✔- I16 --> true
 ✔- O61 --> true
 
+🎈I20 --> true
+I21 --> false
+N52 --> true
+G68 --> false
+
+
+Atomic behavior - check whether element is part of an array
+✔number = 1
+array = [1, 2]
+output = true
+
+✔number = 4
+array = [1, 2]
+output = false
+
+✔number = 4
+array = [1, 2, 40]
+output = false
+
+TODO: card validation
+
 Atomic behavior - Number range by letter
 🍗- B --> 1-15
 🍕 - I --> 16-30

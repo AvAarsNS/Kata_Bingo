@@ -1,5 +1,6 @@
 function checkIfNumberIsOnCard(card, number) {
     var numberWithoutTheLetter = extractNumberFromString(number);
+        
     return card[1].includes(numberWithoutTheLetter);
 }
 
@@ -47,4 +48,10 @@ function checkIfNumberIsInRangeOfLetter(number) {
 
 
 
-module.exports = { checkIfNumberIsOnCard, extractNumberFromString, extractLetterFromString, checkWhatRangeBelongsToLetter, checkIfNumberIsInRangeOfLetter}
+function isMyNumberInThisBingoRow(row, number) {
+    return row.indexOf(number) > -1 
+}
+
+
+
+module.exports = { checkIfNumberIsOnCard, extractNumberFromString, extractLetterFromString, checkWhatRangeBelongsToLetter, checkIfNumberIsInRangeOfLetter, isMyNumberInThisBingoRow }

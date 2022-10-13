@@ -1,4 +1,4 @@
-const { checkIfNumberIsOnCard, extractNumberFromString, checkWhatRangeBelongsToLetter, checkIfNumberIsInRangeOfLetter, extractLetterFromString} = require('../src/template');
+const { checkIfNumberIsOnCard, extractNumberFromString, checkWhatRangeBelongsToLetter, checkIfNumberIsInRangeOfLetter, extractLetterFromString, isMyNumberInThisBingoRow } = require('../src/template');
 
 describe('When checking whether a number is on a card, we first want to extract the number from the letter/number combination ', () => {
     it('B1 --> 1', () => {
@@ -45,6 +45,30 @@ describe('We have to check what is the range per letter', () => {
     });
 });
 
+describe('We want to check if a number is part of a bingo row', () => {
+    it(`number = 1
+    bingoRow = [1, 2]
+    output = true`, () => {
+        const bingoRow = [1,2]
+        const number = 1
+        expect(isMyNumberInThisBingoRow(bingoRow, number)).toEqual(true);
+        });
+    it(`number = 4
+    bingoRow = [1, 2]
+    output = false`, () => {
+        const bingoRow = [1, 2]
+        const number = 4
+        expect(isMyNumberInThisBingoRow(bingoRow, number)).toEqual(false);
+    });
+    it(`number = 4
+    bingoRow = [1, 2, 40]
+    output = false`, () => {
+        const bingoRow = [1, 2, 40]
+        const number = 4
+        expect(isMyNumberInThisBingoRow(bingoRow, number)).toEqual(false);
+    });
+});
+
 describe('We have to check if the number is in the range of the letter', () => {
     it('G61 --> ❌', () => {
         const number = 'G61'
@@ -81,4 +105,8 @@ describe('We have to check if a number is present on the card', () => {
         const number = 'O61'
         expect(checkIfNumberIsOnCard(card, number)).toEqual(true);
     });
+    // it('I20 --> true', () => {
+    //     const number = 'I20'
+    //     expect(checkIfNumberIsOnCard(card, number)).toEqual(true);
+    // });
 }); 
