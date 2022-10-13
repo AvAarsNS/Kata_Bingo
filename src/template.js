@@ -22,12 +22,23 @@ function isBingoInList(letters) {
         }
     }
     return true
+}
+
+function bingoResult(numbers) {
+    letters = translateListOfNumbersToLetters(numbers);
+
+    if (isBingoInList(letters)) {
+        return 'WIN'
     }
+
+    return 'LOSE';
+}
  
 
 module.exports = {
     translateNumberToLetter,
     translateListOfNumbersToLetters,
     isLetterInList,
-    isBingoInList
+    isBingoInList,
+    bingoResult
 }
