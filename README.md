@@ -23,6 +23,11 @@ Extract number from letter/number combi
 ✔B1 --> 1
 ✔IOO15 --> 15
 
+Extract letter from letter/number combi
+
+🍚 B1 --> B
+🍜 IOO15 --> I
+
 Determine if one of the numbers is on the card
 
 Given this card:
@@ -36,18 +41,23 @@ card = [
 ]
 
 ✔- B1 --> true
-- I16 --> true
-- G61 --> false
-- O61 --> true
+✔- I16 --> true
+✔- O61 --> true
 
-- I18 --> true
-- N37 --> true
-- N32 --> false
-- O69 --> true
-- K10 --> false
+Atomic behavior - Number range by letter
+🍗- B --> 1-15
+🍕 - I --> 16-30
+🥞 - N --> 31-45
+🍟- G --> 46-60
+🧀- O --> 61-75
+🥐- Z --> not in range
+
+Atomic behavior - Does the number belong to the range
+🍘- G61 --> false
+🍙- I18 --> true
+🍚- N37 --> true
 
 Determine bingo on a horizontal line
-GUARDIAN: B20 --> not possible, because range of B is from 1-15
 
 Scenario 2: bingo on the first vertical line
 

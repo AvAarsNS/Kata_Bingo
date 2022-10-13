@@ -1,4 +1,4 @@
-const { checkIfNumberIsOnCard, extractNumberFromString} = require('../src/template');
+const { checkIfNumberIsOnCard, extractNumberFromString, checkWhatRangeBelongsToLetter, checkIfNumberIsInRangeOfLetter, extractLetterFromString} = require('../src/template');
 
 describe('When checking whether a number is on a card, we first want to extract the number from the letter/number combination ', () => {
     it('B1 --> 1', () => {
@@ -6,6 +6,57 @@ describe('When checking whether a number is on a card, we first want to extract 
     });
     it('IOO15 --> 15', () => {
         expect(extractNumberFromString("IOO15")).toEqual(15);
+    });
+});
+
+describe('When checking whether a number is on a card, we want to extract the letter from the letter/number combination ', () => {
+    it('B1 --> B', () => {
+        expect(extractLetterFromString("B1")).toEqual('B');
+    });
+    it('I15 --> I', () => {
+        expect(extractLetterFromString("I15")).toEqual('I');
+    });
+});
+
+describe('We have to check what is the range per letter', () => {
+    it('B contains 1 to 15', () => {
+        const letter = 'B'
+        expect(checkWhatRangeBelongsToLetter(letter)).toEqual([1, 15]);
+    });
+    it('I contains 16 to 30', () => {
+        const letter = 'I'
+        expect(checkWhatRangeBelongsToLetter(letter)).toEqual([16, 30]);
+    });
+    it('N contains 31 to 45', () => {
+        const letter = 'N'
+        expect(checkWhatRangeBelongsToLetter(letter)).toEqual([31, 45]);
+    });
+    it('G contains 46 to 60', () => {
+        const letter = 'G'
+        expect(checkWhatRangeBelongsToLetter(letter)).toEqual([46, 60]);
+    });
+    it('O contains 61 to 75', () => {
+        const letter = 'O'
+        expect(checkWhatRangeBelongsToLetter(letter)).toEqual([61, 75]);
+    });
+    it('Z --> not in range', () => {
+        const letter = 'Z'
+        expect(checkWhatRangeBelongsToLetter(letter)).toEqual('not in range');
+    });
+});
+
+describe('We have to check if the number is in the range of the letter', () => {
+    it('G61 --> ❌', () => {
+        const number = 'G61'
+        expect(checkIfNumberIsInRangeOfLetter(number)).toEqual(false);
+    });
+    it('I18 --> ✔', () => {
+        const number = 'I18'
+        expect(checkIfNumberIsInRangeOfLetter(number)).toEqual(true);
+    });
+    it('N37 --> ✔', () => {
+        const number = 'N37'
+        expect(checkIfNumberIsInRangeOfLetter(number)).toEqual(true);
     });
 });
 
@@ -26,4 +77,8 @@ describe('We have to check if a number is present on the card', () => {
         const number = 'I16'
         expect(checkIfNumberIsOnCard(card, number)).toEqual(true);
     });
-});
+    it('O61 --> true', () => {
+        const number = 'O61'
+        expect(checkIfNumberIsOnCard(card, number)).toEqual(true);
+    });
+}); 
