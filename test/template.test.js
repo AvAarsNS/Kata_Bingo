@@ -1,19 +1,19 @@
 const {
     translateNumberToLetter,
     translateListOfNumbersToLetters,
-    isLetterInList
+    isLetterInList,
+    isBingoInList
 } = require('../src/template');
-
 describe('This is a testsuite for the BINGO kata', () => {
     describe('We want to translate numbers to letters', () => {
         it('1 -> A', () => {
-            expect(translateNumberToLetter(1)).toEqual('A');        
+            expect(translateNumberToLetter(1)).toEqual('A');
         });
         it('2 -> B', () => {
-            expect(translateNumberToLetter(2)).toEqual('B');        
+            expect(translateNumberToLetter(2)).toEqual('B');
         });
         it('26 -> Z', () => {
-            expect(translateNumberToLetter(26)).toEqual('Z');        
+            expect(translateNumberToLetter(26)).toEqual('Z');
         });
     });
     describe('We want to translate a list of numbers to letters', () => {
@@ -38,4 +38,25 @@ describe('This is a testsuite for the BINGO kata', () => {
             expect(isLetterInList('A', ['B'])).toEqual(false);
         });
     });
+    describe('We want to find BINGO in the list of letters', () =>{
+        it('[B,I,N,G,O] => true', () => {
+            expect(isBingoInList(['B','I','N','G','O'])).toEqual(true);
+        });
+        it('[B,U,N,G,O] => false', () => {
+            expect(isBingoInList(['B','U','N','G','O'])).toEqual(false);
+        });
+        it('[] => false', () => {
+            expect(isBingoInList([])).toEqual(false);
+        });
+        it('[Y,I,N,G,O,S,T,D,H,F] => false', () => {
+            expect(isBingoInList(['Y','I','N','G','O','S','T','D','H','F'])).toEqual(false);
+        });
+        it('[F,B,I,N,G,O,S,T,D,H] => true', () => {
+            expect(isBingoInList([,'F','B','I','N','G','O','S','T','D','H'])).toEqual(true);
+        });
+    });
 });
+
+
+
+
