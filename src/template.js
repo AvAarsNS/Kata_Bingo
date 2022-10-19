@@ -1,8 +1,28 @@
 function checkIfNumberIsOnCard(card, number) {
     var numberWithoutTheLetter = extractNumberFromString(number);
-        
-    return card[1].includes(numberWithoutTheLetter);
+    var foundTheNumberOnTheCard = false
+    for (let bingoRow = 0; bingoRow < card.length; bingoRow++) {
+        const row = card[bingoRow];
+        if (isMyNumberInThisBingoRow(row, numberWithoutTheLetter)) {
+            foundTheNumberOnTheCard = true
+        }
+    } 
+    return foundTheNumberOnTheCard; 
 }
+
+
+function isMyNumberInThisBingoRow(row, number) {
+    return row.indexOf(number) > -1 
+}
+
+function validateBingoHeader(bingoHeader){
+    const validBingoHeader = ['B', 'I', 'N', 'G', 'O']
+    const validBingoHeaderString = JSON.stringify(validBingoHeader)
+    const bingoHeaderToValidateString = JSON.stringify(bingoHeader)
+    
+    return bingoHeaderToValidateString == validBingoHeaderString
+}
+
 
 function extractNumberFromString(number) {
     return parseInt(number.replace(/[^0-9\.]+/g, ""));
@@ -48,10 +68,7 @@ function checkIfNumberIsInRangeOfLetter(number) {
 
 
 
-function isMyNumberInThisBingoRow(row, number) {
-    return row.indexOf(number) > -1 
-}
 
 
 
-module.exports = { checkIfNumberIsOnCard, extractNumberFromString, extractLetterFromString, checkWhatRangeBelongsToLetter, checkIfNumberIsInRangeOfLetter, isMyNumberInThisBingoRow }
+module.exports = { checkIfNumberIsOnCard, extractNumberFromString, extractLetterFromString, checkWhatRangeBelongsToLetter, checkIfNumberIsInRangeOfLetter, isMyNumberInThisBingoRow, validateBingoHeader }

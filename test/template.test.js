@@ -1,4 +1,4 @@
-const { checkIfNumberIsOnCard, extractNumberFromString, checkWhatRangeBelongsToLetter, checkIfNumberIsInRangeOfLetter, extractLetterFromString, isMyNumberInThisBingoRow } = require('../src/template');
+const { checkIfNumberIsOnCard, extractNumberFromString, checkWhatRangeBelongsToLetter, checkIfNumberIsInRangeOfLetter, extractLetterFromString, isMyNumberInThisBingoRow, validateBingoHeader } = require('../src/template');
 
 describe('When checking whether a number is on a card, we first want to extract the number from the letter/number combination ', () => {
     it('B1 --> 1', () => {
@@ -105,8 +105,38 @@ describe('We have to check if a number is present on the card', () => {
         const number = 'O61'
         expect(checkIfNumberIsOnCard(card, number)).toEqual(true);
     });
-    // it('I20 --> true', () => {
-    //     const number = 'I20'
-    //     expect(checkIfNumberIsOnCard(card, number)).toEqual(true);
-    // });
+    it('I20 --> true', () => {
+        const number = 'I20'
+        expect(checkIfNumberIsOnCard(card, number)).toEqual(true);
+    });
+    it('I21 --> false', () => {
+        const number = 'I21'
+        expect(checkIfNumberIsOnCard(card, number)).toEqual(false);
+    });
+    it('N52 --> true', () => {
+        const number = 'N52'
+        expect(checkIfNumberIsOnCard(card, number)).toEqual(true);
+    });
+    it('G68 --> false', () => {
+        const number = 'G68'
+        expect(checkIfNumberIsOnCard(card, number)).toEqual(false);
+    });
 }); 
+
+describe('The next step is to validate the whole bingo card', () => {
+    describe('Check if the bingo card has a BINGO header', () => {
+        it('[B, I] --> false', () => {
+            const bingoHeader = ['B', 'I']
+            expect(validateBingoHeader(bingoHeader)).toEqual(false);
+        });
+        it('[B, I, N, G, O] --> true', () => {
+            const bingoHeader = ['B', 'I', 'N', 'G', 'O']
+            expect(validateBingoHeader(bingoHeader)).toEqual(true);
+        });
+        it('[B, I, N, G, O, K] --> false', () => {
+            const bingoHeader = ['B', 'I', 'N', 'G', 'O', 'K']
+            expect(validateBingoHeader(bingoHeader)).toEqual(false);
+        });
+    });
+
+});

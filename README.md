@@ -44,8 +44,8 @@ card = [
 ✔- I16 --> true
 ✔- O61 --> true
 
-🎈I20 --> true
-I21 --> false
+🍕I20 --> true
+🍕I21 --> false
 N52 --> true
 G68 --> false
 
