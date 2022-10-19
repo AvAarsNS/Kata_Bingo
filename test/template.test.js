@@ -1,4 +1,5 @@
-const { checkIfNumberIsOnCard, extractNumberFromString, checkWhatRangeBelongsToLetter, checkIfNumberIsInRangeOfLetter, extractLetterFromString, isMyNumberInThisBingoRow, validateBingoHeader } = require('../src/template');
+const { checkIfNumberIsOnCard, extractNumberFromString, checkWhatRangeBelongsToLetter, checkIfNumberIsInRangeOfLetter, 
+    extractLetterFromString, isMyNumberInThisBingoRow, validateBingoHeader, validateAmountOfRowsInBingoCard, validateAmountOfCharactersInBingoRow } = require('../src/template');
 
 describe('When checking whether a number is on a card, we first want to extract the number from the letter/number combination ', () => {
     it('B1 --> 1', () => {
@@ -138,5 +139,44 @@ describe('The next step is to validate the whole bingo card', () => {
             expect(validateBingoHeader(bingoHeader)).toEqual(false);
         });
     });
+    describe('Check if the bingo card has 6 rows', () => {
+        it(`['B', 'I', 'N', 'G', 'O'] --> false`, () => {
+            const card = ['B', 'I', 'N', 'G', 'O']
+            expect(validateAmountOfRowsInBingoCard(card)).toEqual(false);
+            
+        });
+        it(` card = [
+        ['B', 'I', 'N', 'G', 'O'],
+        [1, 16, 31, 46, 61],
+        [3, 18, 33, 48, 63],              --> true
+        [5, 20, 'FREE SPACE', 50, 65],
+        [7, 22, 37, 52, 67],
+        [9, 24, 39, 54, 69]
+]`, () => {
+            const card = [
+                ['B', 'I', 'N', 'G', 'O'],
+                [1, 16, 31, 46, 61],
+                [3, 18, 33, 48, 63],
+                [5, 20, 'FREE SPACE', 50, 65],
+                [7, 22, 37, 52, 67],
+                [9, 24, 39, 54, 69]
+            ]
+            expect(validateAmountOfRowsInBingoCard(card)).toEqual(true);
 
-});
+        });
+    });
+    describe('Validate if the bingo row has the correct amount of characters', () => {
+        it(`['B', 'I', 'N', 'G', 'O'] --> true`, () => {
+            const bingoRow = ['B', 'I', 'N', 'G', 'O']
+            expect(validateAmountOfCharactersInBingoRow(bingoRow)).toEqual(true);
+            
+        });
+
+        it(`[1, 16, 31, 46, 61, 20] --> false`, () => {
+            const bingoRow = [1, 16, 31, 46, 61, 20]
+            expect(validateAmountOfCharactersInBingoRow(bingoRow)).toEqual(false);
+
+        });
+        
+    });
+})

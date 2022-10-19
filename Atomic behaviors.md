@@ -64,10 +64,23 @@ Validate if the bingo card has a BINGO header
 🍳[B, I, N, G, O, K] --> false
 
 Validate if the bingo card has the correct amount of rows
+✔ ['B', 'I', 'N', 'G', 'O'] --> false
+✔ card = [
+  ['B', 'I', 'N', 'G', 'O'],
+  [1, 16, 31, 46, 61],
+  [3, 18, 33, 48, 63],              --> true
+  [5, 20, 'FREE SPACE', 50, 65],
+  [7, 22, 37, 52, 67],
+  [9, 24, 39, 54, 69]
+]
 
-Validate if the bingo row has the correct amount of numbers
+Validate if the bingo row has the correct amount of characters
+✔ ['B', 'I', 'N', 'G', 'O'] --> true
+✔ [1, 16, 31, 46, 61, 20] --> false
 
 Validate if FREE SPACE is positioned correctly
+
+Validate if every position except the free space, contains numbers
 
 Validate if a column contains the numbers correlating to its letter
 

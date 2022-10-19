@@ -66,9 +66,19 @@ function checkIfNumberIsInRangeOfLetter(number) {
     return digit >= lowerBound && digit <= upperBound
 }
 
+function validateAmountOfRowsInBingoCard(card) {
+    return card.length == 6
+    
+}
+
+function validateAmountOfCharactersInBingoRow(bingoRow) {
+    return bingoRow.length == 5
+    
+}
 
 
 
 
 
-module.exports = { checkIfNumberIsOnCard, extractNumberFromString, extractLetterFromString, checkWhatRangeBelongsToLetter, checkIfNumberIsInRangeOfLetter, isMyNumberInThisBingoRow, validateBingoHeader }
+module.exports = { checkIfNumberIsOnCard, extractNumberFromString, extractLetterFromString, checkWhatRangeBelongsToLetter, 
+    checkIfNumberIsInRangeOfLetter, isMyNumberInThisBingoRow, validateBingoHeader, validateAmountOfRowsInBingoCard, validateAmountOfCharactersInBingoRow }
