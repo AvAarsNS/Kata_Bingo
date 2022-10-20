@@ -6,20 +6,20 @@ function checkIfNumberIsOnCard(card, number) {
         if (isMyNumberInThisBingoRow(row, numberWithoutTheLetter)) {
             foundTheNumberOnTheCard = true
         }
-    } 
-    return foundTheNumberOnTheCard; 
+    }
+    return foundTheNumberOnTheCard;
 }
 
 
 function isMyNumberInThisBingoRow(row, number) {
-    return row.indexOf(number) > -1 
+    return row.indexOf(number) > -1
 }
 
-function validateBingoHeader(bingoHeader){
+function validateBingoHeader(bingoHeader) {
     const validBingoHeader = ['B', 'I', 'N', 'G', 'O']
     const validBingoHeaderString = JSON.stringify(validBingoHeader)
     const bingoHeaderToValidateString = JSON.stringify(bingoHeader)
-    
+
     return bingoHeaderToValidateString == validBingoHeaderString
 }
 
@@ -33,28 +33,56 @@ function extractLetterFromString(number) {
 }
 
 function checkWhatRangeBelongsToLetter(letter) {
-    var lowerBound
-    var upperBound
+    var range = [0,0]
 
-    if (letter == 'B') {
-        lowerBound = 1;
-        upperBound = 15;
-    } else if (letter == 'I') {
-        lowerBound = 16;
-        upperBound = 30       
-    } else if (letter == 'N') {
-        lowerBound = 31;
-        upperBound = 45  
-    } else if (letter == 'G') {
-        lowerBound = 46;
-        upperBound = 60
-    } else if (letter == 'O') {
-        lowerBound = 61;
-        upperBound = 75
-    } else return 'not in range'
-    
-    return [lowerBound, upperBound]   
+    range = getTheRangeOfB(letter, range)
+    range = getTheRangeOfI(letter, range)
+    range = getTheRangeOfN(letter, range)
+    range = getTheRangeOfG(letter, range)
+    range = getTheRangeOfO(letter, range)
+
+    return range
 }
+
+function getTheRangeOfB(letter, range) {
+    if (letter == 'B'){
+        range[0] = 1;
+        range[1] = 15;
+        return range
+    }   return range
+};
+
+function getTheRangeOfI(letter, range) {
+    if (letter == 'I') {
+        range[0] = 16;
+        range[1] = 30;
+        return range
+    } return range
+};
+
+function getTheRangeOfN(letter, range) {
+    if (letter == 'N') {
+        range[0] = 31;
+        range[1] = 45;
+        return range
+    } return range
+};
+
+function getTheRangeOfG(letter, range) {
+    if (letter == 'G') {
+        range[0] = 46;
+        range[1] = 60;
+        return range
+    } return range
+};
+
+function getTheRangeOfO(letter, range) {
+    if (letter == 'O') {
+        range[0] = 61;
+        range[1] = 75;
+        return range
+    }   return range
+};
 
 function checkIfNumberIsInRangeOfLetter(number) {
     const letter = extractLetterFromString(number);
@@ -68,17 +96,19 @@ function checkIfNumberIsInRangeOfLetter(number) {
 
 function validateAmountOfRowsInBingoCard(card) {
     return card.length == 6
-    
+
 }
 
 function validateAmountOfCharactersInBingoRow(bingoRow) {
     return bingoRow.length == 5
-    
+
 }
 
 
 
 
 
-module.exports = { checkIfNumberIsOnCard, extractNumberFromString, extractLetterFromString, checkWhatRangeBelongsToLetter, 
-    checkIfNumberIsInRangeOfLetter, isMyNumberInThisBingoRow, validateBingoHeader, validateAmountOfRowsInBingoCard, validateAmountOfCharactersInBingoRow }
+module.exports = {
+    checkIfNumberIsOnCard, extractNumberFromString, extractLetterFromString, checkWhatRangeBelongsToLetter,
+    checkIfNumberIsInRangeOfLetter, isMyNumberInThisBingoRow, validateBingoHeader, validateAmountOfRowsInBingoCard, validateAmountOfCharactersInBingoRow
+}
