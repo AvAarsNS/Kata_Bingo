@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1665654319671" clover="3.2.0">
-  <project timestamp="1665654319671" name="All files">
+<coverage generated="1666255590093" clover="3.2.0">
+  <project timestamp="1666255590093" name="All files">
     <metrics statements="18" coveredstatements="18" conditionals="6" coveredconditionals="6" methods="5" coveredmethods="5" elements="29" coveredelements="29" complexity="0" loc="18" ncloc="18" packages="1" files="1" classes="1"/>
     <file name="template.js" path="C:\Users\Arthur.vanAarsse_nsp\Documents\Kata_Bingo\src\template.js">
       <metrics statements="18" coveredstatements="18" conditionals="6" coveredconditionals="6" methods="5" coveredmethods="5"/>
