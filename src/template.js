@@ -1,3 +1,10 @@
+const rangeB = [1, 15] 
+const rangeI = [16, 30]
+const rangeN = [31, 45]
+const rangeG = [46, 60]
+const rangeO = [61, 75]
+
+
 function checkIfNumberIsOnCard(card, number) {
     var numberWithoutTheLetter = extractNumberFromString(number);
     var foundTheNumberOnTheCard = false
@@ -33,56 +40,23 @@ function extractLetterFromString(number) {
 }
 
 function checkWhatRangeBelongsToLetter(letter) {
-    var range = [0,0]
-
-    range = getTheRangeOfB(letter, range)
-    range = getTheRangeOfI(letter, range)
-    range = getTheRangeOfN(letter, range)
-    range = getTheRangeOfG(letter, range)
-    range = getTheRangeOfO(letter, range)
-
-    return range
+    if (letter == 'B') {
+        return rangeB
+   
+    } else if (letter == 'I') {
+        return rangeI
+    
+    } else if (letter == 'N') {
+        return rangeN
+        
+    } else if (letter == 'G') {
+        return rangeG
+        
+    } else if (letter == 'O') {
+        return rangeO    
+    } else 
+    return [0, 0]
 }
-
-function getTheRangeOfB(letter, range) {
-    if (letter == 'B'){
-        range[0] = 1;
-        range[1] = 15;
-        return range
-    }   return range
-};
-
-function getTheRangeOfI(letter, range) {
-    if (letter == 'I') {
-        range[0] = 16;
-        range[1] = 30;
-        return range
-    } return range
-};
-
-function getTheRangeOfN(letter, range) {
-    if (letter == 'N') {
-        range[0] = 31;
-        range[1] = 45;
-        return range
-    } return range
-};
-
-function getTheRangeOfG(letter, range) {
-    if (letter == 'G') {
-        range[0] = 46;
-        range[1] = 60;
-        return range
-    } return range
-};
-
-function getTheRangeOfO(letter, range) {
-    if (letter == 'O') {
-        range[0] = 61;
-        range[1] = 75;
-        return range
-    }   return range
-};
 
 function checkIfNumberIsInRangeOfLetter(number) {
     const letter = extractLetterFromString(number);
